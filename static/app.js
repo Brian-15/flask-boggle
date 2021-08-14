@@ -1,5 +1,5 @@
 
-// generate word guess form
+// Guess word form
 $('body').append(
     $('<form>').append(
         $('<label>').attr({

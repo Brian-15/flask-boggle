@@ -1,24 +1,27 @@
 body {
-    font-size: larger;
+    font-size: xx-large;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     background-color: purple;
 }
 
 table {
     text-align: center;
-}
-
-tr {
-    width: 500px;
+    height: 60vh;
+    width: 50%;
 }
 
 td {
-    width: 7em;
-    height: 7em;
+    margin: 0;
+    padding: 0;
     border-color: gold;
     border-width: 1em;
     background-color: white;
+}
+
+form {
+    padding: 1em;
 }
