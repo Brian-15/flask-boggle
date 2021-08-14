@@ -8,7 +8,6 @@ boggle_game = Boggle()
 @app.before_first_request
 def setup():
     session["board"] = boggle_game.make_board()
-    return redirect('/')
 
 @app.route('/')
 def home():
