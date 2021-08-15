@@ -3,7 +3,7 @@ const BASE_URL = 'http://127.0.0.1:5000'
 const $msg = $('#messages')
 const $input = $('input')
 
-async function guess(evt) {
+async function handleGuess(evt) {
     evt.preventDefault();
     const word = $input.val();
     $input.val('');
@@ -17,13 +17,10 @@ async function guess(evt) {
     });
 
     const answer = response.data.result;
-    $msg.text(answer);
+    
+    $msg.text(`${word} is ${answer.replace(/-/g, ' ')}`);
 
     return answer;
 }
 
-function displayResult(word, answer) {
-    
-}
-
-$('form').on('submit', guess)
+$('form').on('submit', handleGuess)
