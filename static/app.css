@@ -5,7 +5,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: purple;
+    background-color: rgb(53, 20, 238);
+}
+
+h1, form {
+    color: white
 }
 
 table {
@@ -17,11 +21,17 @@ table {
 td {
     margin: 0;
     padding: 0;
-    border-color: gold;
     border-width: 1em;
-    background-color: white;
+    background-color: goldenrod;
+}
+
+td:hover {
+    background-color: gold;
 }
 
 form {
     padding: 1em;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
 }
