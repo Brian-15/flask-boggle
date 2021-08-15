@@ -5,11 +5,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(53, 20, 238);
-}
-
-h1, form, p {
     color: white;
+    background-color: rgb(53, 20, 238);
     margin-top: 0.2em;
     margin-bottom: 0;
 }
@@ -19,6 +16,7 @@ table {
     text-align: center;
     height: 60vh;
     width: 50%;
+    color: black;
 }
 
 td {
@@ -33,9 +31,28 @@ td:hover {
     background-color: gold;
 }
 
+#ui {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
 form {
+    margin: auto;
     padding: 1em;
     width: 50%;
     display: flex;
     justify-content: space-around;
+}
+
+#score-area, #messages {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+#score {
+    margin-top: 0;
+    margin-left: 1em;
 }
