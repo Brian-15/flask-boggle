@@ -8,11 +8,14 @@ body {
     background-color: rgb(53, 20, 238);
 }
 
-h1, form {
-    color: white
+h1, form, p {
+    color: white;
+    margin-top: 0.2em;
+    margin-bottom: 0;
 }
 
 table {
+    margin-top: 0.2em;
     text-align: center;
     height: 60vh;
     width: 50%;
@@ -21,6 +24,7 @@ table {
 td {
     margin: 0;
     padding: 0;
+    width: 20%;
     border-width: 1em;
     background-color: goldenrod;
 }

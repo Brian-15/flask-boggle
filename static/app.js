@@ -1,26 +1,10 @@
 
 const BASE_URL = 'http://127.0.0.1:5000'
-
-// Guess word form
-$('body').append(
-    $('<form>').append(
-        $('<label>').attr({
-            'for': 'guess',
-        }).text('Guess word: '),
-        $('<input>').attr({
-            'type': 'text',
-            'name': 'guess',
-            'required': true,
-        }),
-        $('<button>').attr({
-            'type': 'submit',
-        }).text('Guess')
-    )
-)
+const $msg = $('#messages')
+const $input = $('input')
 
 async function guess(evt) {
     evt.preventDefault();
-    const $input = $('input')
     const word = $input.val();
     $input.val('');
 
@@ -33,6 +17,7 @@ async function guess(evt) {
     });
 
     const answer = response.data.result;
+    $msg.text(answer);
 
     return answer;
 }

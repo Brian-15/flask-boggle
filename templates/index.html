@@ -8,7 +8,21 @@
 </head>
 <body>
     <h1>Boggle!</h1>
-    {% block content %}{% endblock %}
+    <table>
+        {% for word in board %}
+        <tr>
+            {% for letter in word %}
+            <td>{{letter}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/guess">
+        <label for="guess">Guess word: </label>
+        <input type="text" name="guess" id="guess" required>
+        <button type="submit">Guess</button>
+    </form>
+    <p id=messages></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/app.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
