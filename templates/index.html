@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Boggle!</h1>
-    <table>
+    <table id="game">
         {% for word in board %}
         <tr>
             {% for letter in word %}
@@ -17,18 +17,38 @@
         </tr>
         {% endfor %}
     </table>
-    <div id="ui">
-        <form action="/guess">
-            <label for="guess">Guess word: </label>
-            <input type="text" name="guess" id="guess" required>
-            <button type="submit">Guess</button>
-        </form>
-        <div id="score-area">
-            <label for="score">Score: </label>
-            <p id="score">0</p>
-        </div>
-        <p id=messages></p>
-    </div>
+    <table id="ui">
+        <tr>
+            <p id=messages>Enter a word to guess.</p>
+        </tr>
+        <tr>
+            <td>
+                <label for="guess">Guess word</label>
+            </td>
+            <td>
+                <form action="/guess">
+                    <input type="text" name="guess" id="guess" required>
+                    <button type="submit">Guess</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="score">Score</label>
+            </td>
+            <td>
+                <span id="score">0</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="timer">Time left</label>
+            </td>
+            <td>
+                <span id="timer">60</span>
+            </td>
+        </tr>
+    </table>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/app.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
