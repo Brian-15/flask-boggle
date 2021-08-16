@@ -15,13 +15,9 @@ async function handleGuess(evt) {
     const word = $guess.val();
     $guess.val('');
 
-    const response = await axios({
-        url: `${BASE_URL}/guess`,
-        method: 'GET',
-        params: {
-            word: word,
-        }
-    });
+    const response = await axios.post('/guess',
+        `guess=${word}`
+    );
 
     const answer = response.data.result;
     

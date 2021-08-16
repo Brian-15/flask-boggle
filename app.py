@@ -13,10 +13,14 @@ def setup():
 def home():
     return render_template("index.html", board=session["board"])
 
-@app.route('/guess', methods = ['GET'])
+@app.route('/guess', methods = ['POST'])
 def guess():
+    print(request.form["guess"])
 
-    word = request.args["word"]
+    word = request.form["guess"]
     result = boggle_game.check_valid_word(session["board"], word)
 
     return jsonify(result=result)
+
+# @app.route('/end-game')
+# def end_game():
