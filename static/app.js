@@ -3,9 +3,12 @@ const BASE_URL = 'http://127.0.0.1:5000';
 const $msg = $('#messages');
 const $guess = $('#guess');
 const $score = $('#score');
+const $highScore = $('#high-score');
 const $form = $('form');
 const $timer = $('#timer');
-let gameOver = false;
+const $startBtn = $('#start-btn');
+const $playCount = $('#play-count');
+let gameOver = true;
 
 async function handleGuess(evt) {
     evt.preventDefault();
@@ -32,12 +35,40 @@ async function handleGuess(evt) {
 
 $form.on('submit', handleGuess)
 
-const timerInterval = setInterval(() => {
-    $timer.text($timer.text() - 1)
-}, 1000);
+async function endGame() {
 
-setTimeout(() => {
     gameOver = true;
-    clearInterval(timerInterval);
-    $timer.text("Time over!");
-}, 60000);
+    $msg.hide();
+    $startBtn.text("Play Again?").show();
+
+    const score = $score.text();
+    const highscore = $highScore.text();
+    $highScore.text(score > highscore? score: highscore);
+
+    const response = await axios.post("/game-over", {"highscore": $highScore.text()});
+
+    $playCount.text(response.data["play_count"]);
+}
+
+function handleStart(){
+
+    gameOver = false;
+    $startBtn.hide();
+    $msg.text("Guess a word on the board.").show();
+
+    $timer.text(60);
+
+    const timerInterval = setInterval(() => {
+        $timer.text($timer.text() - 1)
+    }, 1000);
+
+    // game over process
+    setTimeout(() => {
+        endGame();
+        clearInterval(timerInterval);
+        $timer.text("Time over!");
+    }, 60000);
+}
+
+$msg.hide();
+$startBtn.click(handleStart);

@@ -19,7 +19,16 @@
     </table>
     <table id="ui">
         <tr>
-            <p id=messages>Enter a word to guess.</p>
+            <p id="messages"></p>
+            <button id="start-btn">Start</button>
+        </tr>
+        <tr>
+            <td>
+                <label for="timer">Time left</label>
+            </td>
+            <td>
+                <span id="timer"></span>
+            </td>
         </tr>
         <tr>
             <td>
@@ -42,12 +51,21 @@
         </tr>
         <tr>
             <td>
-                <label for="timer">Time left</label>
+                <label for="high-score">High Score</label>
             </td>
             <td>
-                <span id="timer">60</span>
+                <span id="high-score">{{highscore}}</span>
             </td>
         </tr>
+        <tr>
+            <td>
+                <label for="play-count">Number of rounds: </label>
+            </td>
+            <td>
+                <span id="play-count">{{play_count}}</span>
+            </td>
+        </tr>
+        
     </table>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/app.js"></script>
