@@ -42,7 +42,7 @@ def game_over():
     """route that stores high score and increments game play count by one"""
 
     data = request.get_json()
-    session["highscore"] = int(data["highscore"])
+    session["highscore"] = data["highscore"]
 
     session["play_count"] += 1
 

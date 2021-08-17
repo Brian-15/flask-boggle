@@ -8,22 +8,18 @@ const $form = $('form');
 const $timer = $('#timer');
 const $startBtn = $('#start-btn');
 const $playCount = $('#play-count');
-let gameOver = true;
+const game = new BoggleGame();
 
 async function handleGuess(evt) {
     evt.preventDefault();
 
-    if (gameOver) return;
+    if (game.gameOver) return;
 
     const word = $guess.val();
     $guess.val('');
 
-    const response = await axios.post('/guess',
-        `guess=${word}`
-    );
+    const answer = await game.guess(word);
 
-    const answer = response.data.result;
-    
     // update message for user
     $msg.text(`${word} is ${answer.replace(/-/g, ' ')}`);
 
@@ -37,26 +33,25 @@ $form.on('submit', handleGuess)
 
 async function endGame() {
 
-    gameOver = true;
     $msg.hide();
     $startBtn.text("Play Again?").show();
 
     const score = $score.text();
-    const highscore = $highScore.text();
-    $highScore.text(score > highscore? score: highscore);
-
-    const response = await axios.post("/game-over", {"highscore": $highScore.text()});
-
-    $playCount.text(response.data["play_count"]);
+    const currHighScore = $highScore.text();
+    const highScore = currHighScore > score? currHighScore: score;
+    $highScore.text(highScore);
+    
+    $playCount.text(await game.submitScore(highScore));
 }
 
 function handleStart(){
 
-    gameOver = false;
+    game.start();
     $startBtn.hide();
     $msg.text("Guess a word on the board.").show();
 
     $timer.text(60);
+    $score.text(0);
 
     const timerInterval = setInterval(() => {
         $timer.text($timer.text() - 1)
@@ -68,6 +63,7 @@ function handleStart(){
         clearInterval(timerInterval);
         $timer.text("Time over!");
     }, 60000);
+
 }
 
 $msg.hide();
