@@ -1,6 +1,7 @@
 from unittest import TestCase
 from app import app
 from flask import session, json
+from boggle import Boggle
 
 
 class FlaskTests(TestCase):
@@ -13,21 +14,26 @@ class FlaskTests(TestCase):
     #         self.assertEqual(res.status_code, 200)
     #         self.assertIn()
     #     return
-
-    # def setUp(self):
-    #     print("TEST SET UP")
+            
 
     # def tearDown(self):
     #     print("TEST TEAR DOWN")
 
     def test_home(self):
         with app.test_client() as client:
+            with client.session_transaction() as change_session:
+                change_session['board'] = Boggle().make_board()
+                change_session['highscore'] = 0
+                change_session['play_count'] = 0
+
             res = client.get('/')
             # html = res.get_data(as_text = True)
             self.assertEqual(res.status_code, 200)
 
     def test_guess(self):
         with app.test_client() as client:
+            with client.session_transaction() as change_session:
+                change_session['board'] = Boggle().make_board()
 
             res = client.post('/guess', data={'guess': 'xyz'})
             res_data = res.get_json()
