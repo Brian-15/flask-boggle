@@ -43,6 +43,7 @@ def game_over():
 
     data = request.get_json()
     session["highscore"] = data["highscore"]
+    print(data)
 
     session["play_count"] += 1
 
